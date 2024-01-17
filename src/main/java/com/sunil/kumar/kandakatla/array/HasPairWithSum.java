@@ -1,4 +1,4 @@
-package com.sunil.kumar.kandakatla;
+package com.sunil.kumar.kandakatla.array;
 
 import java.util.HashSet;
 import java.util.Set;
