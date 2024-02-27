@@ -1,6 +1,6 @@
-package com.sunil.kumar.kandakatla.linkedlists;
+package com.sunil.kumar.kandakatla.datastructure.linkedlists;
 
-public class DoublyLinkedList<E> {
+public class SinglyLinkedList<E> {
 
 	int size = 0;
 
@@ -10,43 +10,38 @@ public class DoublyLinkedList<E> {
 
 	private static class Node<E> {
 		E value;
-		Node<E> prev;
 		Node<E> next;
 
 		Node(E value) {
 			this.value = value;
-			this.prev = null;
 			this.next = null;
 		}
-
+		
 		@Override
 		public String toString() {
-			return "Node [" + "prev=" + (prev != null ? prev.value : " ") + ", value=" + value + ", next="
-					+ (next != null ? next.value : "") + "]";
+			return "Node [value=" + value + ", next=" + (next != null ? next.value : "") + "]";
 		}
 	}
 
 	public void append(E value) {
 		Node<E> newNode = new Node<>(value);
 
-		if (this.size == 0) {
+		if (this.first == null) {
 			this.first = this.last = newNode;
 		} else {
-			newNode.prev = this.last;
 			this.last.next = newNode;
 			this.last = newNode;
 		}
-
 		this.size++;
 	}
 
 	public void prepend(E value) {
 		Node<E> newNode = new Node<>(value);
-		if (this.size == 0) {
+
+		if (this.first == null) {
 			this.first = this.last = newNode;
 		} else {
 			newNode.next = this.first;
-			this.first.prev = newNode;
 			this.first = newNode;
 		}
 		this.size++;
@@ -62,27 +57,17 @@ public class DoublyLinkedList<E> {
 		}
 
 		if (index == 0) {
-			if (this.size == 0) {
+			if (this.first == null) {
 				this.first = this.last = newNode;
 			} else {
 				newNode.next = this.first;
-				this.first.prev = newNode;
 				this.first = newNode;
 			}
 		} else {
 			Node<E> currentNode = find(index);
-			Node<E> currentNodeNext = currentNode.next;
 
-			if (currentNodeNext != null) {
-				currentNode.next = newNode;
-				newNode.prev = currentNode;
-				newNode.next = currentNodeNext;
-				currentNodeNext.prev = newNode;
-			} else {
-				newNode.prev = currentNode;
-				currentNode.next = newNode;
-				currentNode = newNode;
-			}
+			newNode.next = currentNode.next;
+			currentNode.next = newNode;
 
 			Node<E> last = newNode;
 			while (last.next != null) {
@@ -102,50 +87,34 @@ public class DoublyLinkedList<E> {
 
 		if (index == 0) {
 			this.first = this.first.next;
-			this.first.prev = null;
 		} else {
 			Node<E> currentNode = find(index);
 
 			if (currentNode.next != null) {
 				currentNode.next = currentNode.next.next;
-				currentNode.next.prev = currentNode;
-			} else {
-				currentNode = currentNode.prev;
-				currentNode.next = null;
 			}
 
 			Node<E> last = currentNode;
-			while (last.next != null) {
+			while (last != null) {
 				last = last.next;
 			}
 
 			this.last = last;
 		}
 		this.size--;
-	
 	}
 
 	public void read() {
 		Node<E> currentNode = this.first;
 		while (currentNode != null) {
-			System.out.println(currentNode);
+			System.out.println(currentNode.value);
 			currentNode = currentNode.next;
-		}
-		System.out.println();
-	}
-	
-	public void reverse() {
-		System.out.println("reverse");
-		Node<E> currentNode = this.last;
-		while (currentNode != null) {
-			System.out.println(currentNode);
-			currentNode = currentNode.prev;
 		}
 		System.out.println();
 	}
 
 	public int size() {
-		return size;
+		return this.size;
 	}
 
 	public Node<E> find(int index) {
@@ -157,24 +126,18 @@ public class DoublyLinkedList<E> {
 	}
 
 	public static void main(String[] args) {
-		DoublyLinkedList<Integer> doublyLinkedList = new DoublyLinkedList<>();
-		doublyLinkedList.append(4);
-		doublyLinkedList.append(5);
-		doublyLinkedList.prepend(2);
-//		doublyLinkedList.read();
+		SinglyLinkedList<Integer> singlyLinkedList = new SinglyLinkedList<>();
+		singlyLinkedList.append(4);
+		singlyLinkedList.append(5);
+		singlyLinkedList.prepend(3);
+		singlyLinkedList.read();
 
-		doublyLinkedList.insert(1, 3);
-//		doublyLinkedList.read();
+		singlyLinkedList.insert(3, 7);
+		singlyLinkedList.append(8);
+		singlyLinkedList.read();
 
-		doublyLinkedList.insert(4, 6);
-		doublyLinkedList.append(7);
-		doublyLinkedList.read();
-
-		doublyLinkedList.delete(1);
-		doublyLinkedList.delete(3);
-		doublyLinkedList.read();
-		
-		doublyLinkedList.reverse();
+		singlyLinkedList.delete(3);
+		singlyLinkedList.read();
 	}
 
 }

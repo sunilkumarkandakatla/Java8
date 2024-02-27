@@ -1,4 +1,4 @@
-package com.sunil.kumar.kandakatla.sorting;
+package com.sunil.kumar.kandakatla.algorithm.sorting;
 
 import java.util.stream.IntStream;
 

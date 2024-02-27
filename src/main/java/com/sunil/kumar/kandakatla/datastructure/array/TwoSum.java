@@ -1,4 +1,4 @@
-package com.sunil.kumar.kandakatla.array;
+package com.sunil.kumar.kandakatla.datastructure.array;
 
 import java.util.Arrays;
 import java.util.HashMap;
