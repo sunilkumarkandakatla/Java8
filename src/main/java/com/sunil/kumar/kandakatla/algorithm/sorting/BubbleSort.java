@@ -13,7 +13,7 @@ import java.util.stream.IntStream;
  */
 public class BubbleSort {
 
-	static void bubbleSort(int[] arr) {
+	static void sort(int[] arr) {
 		int n = arr.length;
 		IntStream.range(0, n - 1)
 		.flatMap(i -> IntStream.range(1, n - i))
@@ -26,7 +26,7 @@ public class BubbleSort {
 		});
 	}
 
-	static void optimizedBubbleSort(int[] arr) {
+	static void optimizedSort(int[] arr) {
 		int i = 0, n = arr.length;
 		boolean swapNeeded = true;
 		while (i < n - 1 && swapNeeded) {
@@ -46,7 +46,7 @@ public class BubbleSort {
 		}
 	}
 
-	static void bubbleSort(int arr[], int n) {
+	static void sort(int arr[], int n) {
 		int i, j, temp;
 		boolean swapped;
 		for (i = 0; i < n - 1; i++) {
@@ -77,15 +77,15 @@ public class BubbleSort {
 
 	public static void main(String[] args) {
 		int array[] = { 64, 34, 25, 12, 22, 11, 90 };
-		bubbleSort(array, array.length);
+		sort(array, array.length);
 		System.out.println("Sorted array: ");
 		printArray(array, array.length);
 
-		bubbleSort(array);
+		sort(array);
 		System.out.println("Sorted array: ");
 		printArray(array, array.length);
 
-		optimizedBubbleSort(array);
+		optimizedSort(array);
 		System.out.println("Sorted array: ");
 		printArray(array, array.length);
 
