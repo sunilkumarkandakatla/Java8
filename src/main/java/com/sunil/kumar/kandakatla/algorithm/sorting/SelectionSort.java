@@ -1,5 +1,13 @@
 package com.sunil.kumar.kandakatla.algorithm.sorting;
 
+/**
+ * @author sunil
+ * 
+ *         https://www.baeldung.com/java-selection-sort
+ * 
+ *         https://www.geeksforgeeks.org/selection-sort/
+ *
+ */
 public class SelectionSort {
 
 	static void sortAscending(final int[] arr) {
